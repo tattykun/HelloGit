@@ -1,0 +1,23 @@
+def search
+     @members = Member.where('name = ? AND kana = ? AND university = ?', params[:name], params[:kana], params[:university])
+ end
+
+
+  post 'members' , to: 'members/index'
+
+
+  %= form_tag action: :search do %>
+    <div class="field">
+      <%= label_tag :name, '名前:' %>
+      <%= text_field_tag :name %>
+    </div>
+    <div class="field">
+      <%= label_tag :kana, 'カナ:' %>
+      <%= text_field_tag :kana %>
+    </div>
+    <div class="field">
+      <%= label_tag :university, '大学:' %>
+      <%= select_tag :university, ['同志社大学', '同志社女子大学','他大学'] %>
+    </div>
+      <%= submit_tag '検索' %>
+  <% end %>
